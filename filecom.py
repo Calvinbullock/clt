@@ -4,13 +4,15 @@ import shutil
 
 # For my refance this tool is a inferier "rsync" / "diff"
 
-# TODO take in a source and a target check every file in the target agenst the src.
+# Take in a source and a target check every file in the target agenst the src.
 #       Compare names and the modifiyed date to check if the files have been moded
 #       since last time. or if the file isent in the target dir but is in the source.
 
+
+# ______MAIN TODO PATH is hardcoded not changeable for each file...
+
 # TODO get the full path for each dir
 PATH = "/home/calvin/Documents/clt/"
-
 
 def main():
     # TODO move parser to other func
@@ -27,17 +29,17 @@ def main():
     src_dir_ls = os.listdir(src_dir_path)
     target_dir_ls = os.listdir(target_dir_path)
 
-    print("src-", src_dir_ls)
-    print("tar-", target_dir_ls)
+    # FOR DEBUGING
+    # print("src-", src_dir_ls)
+    # print("tar-", target_dir_ls)
 
     for src_file in src_dir_ls:
         if len(target_dir_ls) < 1:
-                    shutil.copyfile(src_dir_path + "/" + src_file, target_dir_path + "/" +  src_file)
+            shutil.copyfile(f"{src_dir_path}/{src_file}", f"{target_dir_path}/{src_file}")
 
         else:
             for target_file in target_dir_ls:
                 if target_file == src_file:
-                    print("pop")
                     # check last eddit date then replace target if older
                     src_file_info = os.stat(src_dir_path + "/" + src_file)
                     src_file_last_mod = src_file_info.st_mtime
@@ -46,20 +48,11 @@ def main():
                     target_file_last_mod = target_file_info.st_mtime
 
                     if target_file_last_mod < src_file_last_mod:
-                        os.remove(target_dir_path + "/" + target_file)
-                        shutil.copyfile(src_dir_path + "/" + src_file, target_dir_path + "/" +  src_file)
+                        os.remove(f"{target_dir_path}/{target_file}")
+                        shutil.copyfile(f"{src_dir_path}/{src_file}", f"{target_dir_path}/{src_file}")
 
-                else:  # TODO not sure this is the corrent protection
-                    shutil.copyfile(src_dir_path + "/" + src_file, target_dir_path + "/" +  src_file)
-
-
-def directory_list(path):
-    dir_files = []
-
-    for x in os.listdir():
-        dir_files.append(x)
-
-    return dir_files
+                else:
+                    shutil.copyfile(f"{src_dir_path}/{src_file}", f"{target_dir_path}/{src_file}")
 
 
 main()
