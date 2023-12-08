@@ -8,11 +8,7 @@ import shutil
 #       Compare names and the modifiyed date to check if the files have been moded
 #       since last time. or if the file isent in the target dir but is in the source.
 
-
-# ______MAIN TODO PATH is hardcoded not changeable for each file...
-
-# TODO get the full path for each dir
-PATH = "/home/calvin/Documents/clt/"
+PATH = os.getcwd()
 
 def main():
     # TODO move parser to other func
