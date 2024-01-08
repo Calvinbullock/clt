@@ -4,9 +4,10 @@ import shutil
 
 # For my refance this tool is a inferier "rsync" / "diff"
 
-# Take in a source and a target check every file in the target agenst the src.
-#       Compare names and the modifiyed date to check if the files have been moded
-#       since last time. or if the file isent in the target dir but is in the source.
+# Take in a source and a target directory check every file in the target 
+#       agenst the src. Compare names and the modifiyed date to check if 
+#       the files have been moded since last time. or if the file isent 
+#       in the target dir but is in the source.
 
 PATH = os.getcwd()
 
